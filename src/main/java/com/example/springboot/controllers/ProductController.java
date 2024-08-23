@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import com.example.springboot.repositories.ProductRepository;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin("*")
 public class ProductController {
 	
 	@Autowired
@@ -35,6 +37,7 @@ public class ProductController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(productRepository.save(productModel));
 	}
 	
+	@CrossOrigin
 	@GetMapping("/products")
 	public ResponseEntity<List<ProductModel>> getAllProducts(){
 		return ResponseEntity.status(HttpStatus.OK).body(productRepository.findAll());
@@ -71,7 +74,7 @@ public class ProductController {
 			
 		}
 		productRepository.delete(product0.get());
-		return ResponseEntity.status(HttpStatus.OK).body("product deleted successfully");
+		return ResponseEntity.status(HttpStatus.OK).body("product deleted successfuly");
 	}
 	
 	
